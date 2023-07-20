@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -66,6 +66,12 @@ class LoginController extends Controller
         
         Auth::login($user, true);
         return redirect('/index');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
 }

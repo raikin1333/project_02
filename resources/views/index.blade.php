@@ -12,7 +12,6 @@
 
 @section('body')
 
-@if(true)
 <div class="inline-container">
     <!-- ディレクトリ階層表示 -->
     <nav class="ms-5 me-auto mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -145,10 +144,5 @@
 
 
 
-@else
-
-
-
-@endif
 
 @endsection
