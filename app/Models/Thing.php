@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Thing extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +18,7 @@ class User extends Authenticatable
         'name',
         'email',
         'google_id',
-        // 'password',
+
     ];
 
     /**
@@ -30,8 +27,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        // 'password',
-        'remember_token',
+
     ];
 
     /**
@@ -40,14 +36,18 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        // 'password' => 'hashed',
+
     ];
 
     // リレーションメソッド
     public function objects()
     {
-        // Userは複数のObjectを持っている
-        return $this->hasMany(ObjectModel::class);
+        // ObjectはUserに所有されている
+        return $this->belongsTo(User::class);
+    }
+    public function workflows()
+    {
+        // Objectは複数のWorkflowを持っている
+        return $this->hasMany(Workflow::class);
     }
 }
